@@ -5,7 +5,7 @@
 <html>
 <head></head>
 <body>
-<form action="admin/menuManage.html" method="post" >
+<form action="admin/menuManage" method="post" >
 	<div class="tab-search">
 		<ul>
 			<li>菜单名称：<input type="text" name="menuName" value="${menuName}"/></li>
@@ -20,7 +20,7 @@
 	</div>
 </form>
 <div class="btn-header">
-	<a href="page/addOrUpdateMenu.html" class="easyui-linkbutton addMenu" data-options="iconCls:'icon-add'" >添加菜单</a>
+	<a href="page/addOrUpdateMenu" class="easyui-linkbutton addMenu" data-options="iconCls:'icon-add'" >添加菜单</a>
 </div>
 <table class="bordered" id="menuList">
 	<tr>
@@ -45,10 +45,10 @@
 			<a href="javascript:void(0);" class="submenu-list fa fa-list-ul"  menuid="${menu.id}">
 				<span>子菜单</span>
 			</a>
-			<a href="page/addOrUpdateMenu.html?id=${menu.id}" class="editMneu fa fa-edit">
+			<a href="page/addOrUpdateMenu?id=${menu.id}" class="editMneu fa fa-edit">
 				<span>编辑</span>
 			</a>
-			<a href="menu/delete.html?id=${menu.id}" class="delMenu fa fa-trash">
+			<a href="menu/delete?id=${menu.id}" class="delMenu fa fa-trash">
 				<span>删除</span>
 			</a>
 		</td>
@@ -63,7 +63,7 @@
 $(function(){
 	$("#subMenu").prev(".pageSplit").find("a.page_btn").on("click",$css.jumpPage);
 	$("#menuList")
-	.on("click","a.delMenu",{url:"admin/menuManage.html"},$css.delRecord)
+	.on("click","a.delMenu",{url:"admin/menuManage"},$css.delRecord)
 	.on("click","a.editMneu",{tabName:"编辑菜单"},$css.editRecord);
 	$("a.addMenu").on("click",{tabName:"添加菜单"},$css.editRecord);
 	var openSubmenuList = function(event){
@@ -83,7 +83,7 @@ $(function(){
 			height: 400,
 			closed: false,
 			cache: false,
-			href: "menu/submenuList.html?id="+menuId,
+			href: "menu/submenuList?id="+menuId,
 			buttons:[{
 				text:"保存",
 				handler:save,

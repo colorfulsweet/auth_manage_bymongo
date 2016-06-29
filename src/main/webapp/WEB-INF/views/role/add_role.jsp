@@ -5,7 +5,7 @@
 <head></head>
 <body>
 <div style="padding:10px;">
-	<form class="addRoleForm" method="post" action="role/save.html" onSubmit="return $css.ajaxSubmit(this,'admin/roleManage.html')">
+	<form class="addRoleForm" method="post" action="role/save" onSubmit="return $css.ajaxSubmit(this,'admin/roleManage')">
 		<input type="hidden" name="id" value="${role.id}" />
 		<input type="hidden" name="createTime" value="<fmt:formatDate value="${role.createTime}" type="date" pattern="yyyy-MM-dd HH:mm:ss"/>" />
 		<table class="table-input">

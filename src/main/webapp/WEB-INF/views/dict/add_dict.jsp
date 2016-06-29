@@ -4,7 +4,7 @@
 <head></head>
 <body>
 <div style="padding:10px;">
-	<form class="addDictForm" method="post" action="dict/save.html" onSubmit="return $css.ajaxSubmit(this,'admin/dictManage.html')">
+	<form class="addDictForm" method="post" action="dict/save" onSubmit="return $css.ajaxSubmit(this,'admin/dictManage')">
 		<input type="hidden" name="id" value="${dict.id}" />
 		<table class="table-input">
 			<tr>

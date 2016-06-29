@@ -5,7 +5,7 @@
 <head></head>
 <body>
 <div style="padding:10px;">
-	<form class="addUserForm" method="post" action="user/save.html" onSubmit="return $css.ajaxSubmit(this,'admin/userManage.html')">
+	<form class="addUserForm" method="post" action="user/save" onSubmit="return $css.ajaxSubmit(this,'admin/userManage')">
 		<input type="hidden" name="id" value="${user_.id}" />
 		<table class="table-input">
 			<tr>

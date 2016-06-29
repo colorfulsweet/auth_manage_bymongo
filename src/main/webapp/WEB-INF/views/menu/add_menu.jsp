@@ -4,7 +4,7 @@
 <head></head>
 <body>
 <div style="padding:10px;">
-	<form class="addMenuForm" method="post" action="menu/save.html" onSubmit="return $css.ajaxSubmit(this,'admin/menuManage.html')">
+	<form class="addMenuForm" method="post" action="menu/save" onSubmit="return $css.ajaxSubmit(this,'admin/menuManage')">
 		<input type="hidden" name="id" value="${menu.id}" />
 		<table class="table-input">
 			<tr>

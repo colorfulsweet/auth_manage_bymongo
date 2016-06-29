@@ -27,12 +27,12 @@
 		<div id="top">
 			<div class="nav">
 				<ul>
-				<li><a href="${basePath}page/personalConfig.html" class="tabNav">个人设置</a></li>
-				<li><a href="${basePath}page/logout.html" id="logout">注销</a></li>
+				<li><a href="${basePath}page/personalConfig" class="tabNav">个人设置</a></li>
+				<li><a href="${basePath}page/logout" id="logout">注销</a></li>
 				</ul>
 			</div>
 			<div class="tip">
-				<img src="user/getIcon.html" id="top_icon" />
+				<img src="user/getIcon" id="top_icon" />
 				<p>欢迎你, ${user.realName}</p>
 			</div>
 		</div>
@@ -57,7 +57,7 @@
 		</div>
 		<div class="easyui-tabs" id="content-tab" >
 			<div title="欢迎页" >
-				<jsp:include page="../../page/welcome.html"/>
+				<jsp:include page="../../page/welcome"/>
 			</div>
 		</div>
 		</div>

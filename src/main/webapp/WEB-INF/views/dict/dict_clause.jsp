@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<form action="dict/saveClause.html" method="post" id="dictClause">
+<form action="dict/saveClause" method="post" id="dictClause">
 <input type="hidden" name="dictId" value="${dict.id}" />
 <table class="bordered" id="clauseList" >
 	<tr>
@@ -14,7 +14,7 @@
 		<td>${dictClause.clauseCode}</td>
 		<td>${dictClause.clauseName}</td>
 		<td>
-			<a href="dict/delClause.html?dictId=${dict.id}&id=${dictClause.id}" class="delClause fa fa-trash" >
+			<a href="dict/delClause?dictId=${dict.id}&id=${dictClause.id}" class="delClause fa fa-trash" >
 				<span>删除</span>
 			</a>
 		</td>

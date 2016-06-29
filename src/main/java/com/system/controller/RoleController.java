@@ -36,7 +36,7 @@ public class RoleController {
 	private final String datePettern = "yyyy-MM-dd HH:mm:ss";
 	private SimpleDateFormat dateFormat;
 	
-	@RequestMapping(value="/save.html",produces="text/html;charset=utf-8")
+	@RequestMapping(value="/save",produces="text/html;charset=utf-8")
 	@ResponseBody
 	public String saveRole(Role role){
 		if(role.getCreateTime() == null){
@@ -46,14 +46,14 @@ public class RoleController {
 		return SystemMessage.getMessage("success");
 	}
 	
-	@RequestMapping(value="/delete.html",produces="text/html;charset=utf-8")
+	@RequestMapping(value="/delete",produces="text/html;charset=utf-8")
 	@ResponseBody
 	public String delRole(Role role){
 		mongoDao.del(role);
 		return SystemMessage.getMessage("deleteSuccess");
 	}
 	
-	@RequestMapping(value="/roleList.html")
+	@RequestMapping(value="/roleList")
 	public String getRoleList(User user, Model model){
 		List<Role> roleList = systemService.getRoleList();
 		user = mongoDao.get(User.class, user.getId());
@@ -62,14 +62,14 @@ public class RoleController {
 		return "WEB-INF/views/user/user_role.jsp";
 	}
 	
-	@RequestMapping(value="/saveUserRole.html",produces="text/html;charset=utf-8")
+	@RequestMapping(value="/saveUserRole",produces="text/html;charset=utf-8")
 	@ResponseBody
 	public String saveUserRole(@RequestParam("userId")ObjectId userId, @RequestParam("roleId")ObjectId roleId) {
 		systemService.saveUserRole(userId, roleId);
 		return SystemMessage.getMessage("success");
 	}
 	
-	@RequestMapping(value="/saveRoleMenu.html",produces="text/html;charset=utf-8")
+	@RequestMapping(value="/saveRoleMenu",produces="text/html;charset=utf-8")
 	@ResponseBody
 	public String saveRoleMenu(@RequestParam("roleId")ObjectId roleId, @RequestParam("menuId")ObjectId[] menuId) {
 		Role role = (Role) mongoDao.get(Role.class, roleId);

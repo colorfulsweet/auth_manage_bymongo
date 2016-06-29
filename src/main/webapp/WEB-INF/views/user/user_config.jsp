@@ -25,7 +25,7 @@
 </head>
 <body>
 <div style="padding:20px;">
-<form action="user/uploadIcon.html" method="post" 
+<form action="user/uploadIcon" method="post" 
 		enctype="multipart/form-data" onsubmit="return $css.uploadFile(this)">
 	<div style="height:210px">
 		<div class="image-preview" id="user_icon"></div>

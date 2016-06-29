@@ -18,7 +18,7 @@
 		<div class="container">
 			<h1>${app_name}</h1>
 			
-			<form action="${basePath}page/login.html" method="post" >
+			<form action="${basePath}page/login" method="post" >
 				<input type="text" name="username" placeholder="用户名" required="required"/>
 				<input type="password" name="password" placeholder="密码" required="required"/>
 				<div id="info" >${info} &nbsp;</div>

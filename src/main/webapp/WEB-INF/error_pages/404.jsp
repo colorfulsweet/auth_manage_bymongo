@@ -17,7 +17,7 @@
 	<center>
 		<img src="${basePath}images/404.png" title="页面未找到"/>
 		<br/>
-		<a href="${basePath}page/index.html"> 返回首页</a>
+		<a href="${basePath}page/index"> 返回首页</a>
 		
 	<!-- 错误页面文件不到1KB就无法被找到  这些注释只是为了凑字节数-->
 	<!-- 错误页面文件不到1KB就无法被找到  这些注释只是为了凑字节数-->

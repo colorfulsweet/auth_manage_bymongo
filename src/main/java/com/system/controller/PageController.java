@@ -19,7 +19,6 @@ import com.system.service.ISystemService;
 import com.system.service.dao.IMongoDao;
 
 @Controller
-@RequestMapping(value="/page")
 public class PageController {
 	@Autowired
 	private ISystemService systemService;
@@ -27,7 +26,7 @@ public class PageController {
 	@Autowired
 	private IMongoDao mongoDao;
 	
-	@RequestMapping(value="/index.html")
+	@RequestMapping({"/","/index"})
 	public String toIndex(HttpSession session) {
 		if(session.getAttribute("user") == null) {
 			return "WEB-INF/views/login.jsp";
@@ -35,7 +34,7 @@ public class PageController {
 			return "WEB-INF/views/explorer.jsp";
 		}
 	}
-	@RequestMapping(value="/welcome.html")
+	@RequestMapping(value="/page/welcome")
 	public String toWelcome() {
 		return "WEB-INF/views/welcome.jsp";
 	}
@@ -45,7 +44,7 @@ public class PageController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value="/login.html",method=RequestMethod.POST)
+	@RequestMapping(value="/page/login",method=RequestMethod.POST)
 	public String login(User user,Model model,HttpSession session){
 		user = systemService.checkUser(user);
 		if(user != null && user.getStatus()){
@@ -57,7 +56,7 @@ public class PageController {
 				user.getRole().setMenus(menuSet);
 				session.setAttribute("menuList", user.getRole().getMenus());
 			}
-			return "redirect:../index.jsp";
+			return "redirect:../index";
 		} else {
 			if(user == null){
 				model.addAttribute("info", "用户名/密码错误");
@@ -72,10 +71,10 @@ public class PageController {
 	 * @param session
 	 * @return 重定向至首页
 	 */
-	@RequestMapping(value="/logout.html")
+	@RequestMapping(value="/page/logout")
 	public String logout(HttpSession session){
 		session.invalidate();
-		return "redirect:../index.jsp";
+		return "redirect:../index";
 	}
 	/**
 	 * 新增/编辑用户请求
@@ -83,7 +82,7 @@ public class PageController {
 	 * @param model
 	 * @return 新增用户页面
 	 */
-	@RequestMapping(value="/addOrUpdateUser.html")
+	@RequestMapping(value="/page/addOrUpdateUser")
 	public String addOrUpdateUser(User user,Model model){
 		if(user.getId() != null){
 			user = (User) mongoDao.get(User.class, user.getId());
@@ -98,7 +97,7 @@ public class PageController {
 	 * @param model
 	 * @return 新增字典界面
 	 */
-	@RequestMapping(value="/addOrUpdateDict.html")
+	@RequestMapping(value="/page/addOrUpdateDict")
 	public String addOrUpdateDict(Dict dict,Model model){
 		if(dict.getId() != null){
 			dict = (Dict) mongoDao.get(Dict.class, dict.getId());
@@ -112,7 +111,7 @@ public class PageController {
 	 * @param model
 	 * @return 新增菜单界面
 	 */
-	@RequestMapping(value="/addOrUpdateMenu.html")
+	@RequestMapping(value="/page/addOrUpdateMenu")
 	public String addOrUpdateMenu(Menu menu,Model model){
 		if(menu.getId() != null){
 			menu = (Menu) mongoDao.get(Menu.class,menu.getId());
@@ -126,7 +125,7 @@ public class PageController {
 	 * @param model
 	 * @return 新增角色界面
 	 */
-	@RequestMapping(value="/addOrUpdateRole.html")
+	@RequestMapping(value="/page/addOrUpdateRole")
 	public String addOrUpdateRole(Role role,Model model){
 		if(role.getId() != null){
 			role = (Role) mongoDao.get(Role.class,role.getId());
@@ -135,7 +134,7 @@ public class PageController {
 		return "WEB-INF/views/role/add_role.jsp";
 	}
 	
-	@RequestMapping(value="/personalConfig.html")
+	@RequestMapping(value="/page/personalConfig")
 	public String userPersonalConfig(){
 		return "WEB-INF/views/user/user_config.jsp";
 	}

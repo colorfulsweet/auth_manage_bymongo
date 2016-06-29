@@ -29,10 +29,10 @@ public class AdminController {
 	 * @param criteria 查询条件
 	 * @return
 	 */
-	@RequestMapping(value="/menuManage.html")
+	@RequestMapping(value="/menuManage")
 	public String menuManage(Model model, Page page, @RequestParam Map<String,Object> criteria){
 		CharactorUtils.charactorHandle(criteria);
-		page.setLinkUrl("admin/menuManage.html");
+		page.setLinkUrl("admin/menuManage");
 		mongoDao.dir(Menu.class, page, criteria);
 		model.addAllAttributes(criteria);
 		model.addAttribute("page",page);
@@ -45,10 +45,10 @@ public class AdminController {
 	 * @param criteria 查询条件
 	 * @return
 	 */
-	@RequestMapping(value="/roleManage.html")
+	@RequestMapping(value="/roleManage")
 	public String roleManage(Model model, Page page, @RequestParam Map<String,Object> criteria){
 		CharactorUtils.charactorHandle(criteria);
-		page.setLinkUrl("admin/roleManage.html");
+		page.setLinkUrl("admin/roleManage");
 		mongoDao.dir(Role.class, page, criteria);
 		model.addAllAttributes(criteria);
 		model.addAttribute("page", page);
@@ -61,10 +61,10 @@ public class AdminController {
 	 * @param criteria 查询条件
 	 * @return
 	 */
-	@RequestMapping(value="/userManage.html")
+	@RequestMapping(value="/userManage")
 	public String userManage(Model model, Page page, @RequestParam Map<String,Object> criteria){
 		CharactorUtils.charactorHandle(criteria);
-		page.setLinkUrl("admin/userManage.html");
+		page.setLinkUrl("admin/userManage");
 		mongoDao.dir(User.class, page, criteria);
 		model.addAllAttributes(criteria);
 		model.addAttribute("page", page);
@@ -77,22 +77,30 @@ public class AdminController {
 	 * @param criteria 查询条件
 	 * @return
 	 */
-	@RequestMapping(value="/dictManage.html")
+	@RequestMapping(value="/dictManage")
 	public String dictManage(Model model, Page page, @RequestParam Map<String,Object> criteria){
 		CharactorUtils.charactorHandle(criteria);
-		page.setLinkUrl("admin/dictManage.html");
+		page.setLinkUrl("admin/dictManage");
 		mongoDao.dir(Dict.class, page, criteria);
 		model.addAllAttributes(criteria);
 		model.addAttribute("page", page);
 		return "/WEB-INF/views/admin/dict_manage.jsp";
 	}
-	
-	@RequestMapping(value="/deptManage.html")
+	/**
+	 * 组织机构管理
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/deptManage")
 	public String deptManage(Model model){
 		return "/WEB-INF/views/admin/dept_manage.jsp";
 	}
-	
-	@RequestMapping(value="/authManage.html")
+	/**
+	 * 权限认证管理
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/authManage")
 	public String authManage(Model model){
 		
 		return "/WEB-INF/views/admin/auth_manage.jsp";

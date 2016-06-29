@@ -26,21 +26,21 @@ public class MenuController {
 	@Autowired
 	private ISystemService systemService;
 	
-	@RequestMapping(value="/save.html",produces="text/html;charset=utf-8")
+	@RequestMapping(value="/save",produces="text/html;charset=utf-8")
 	@ResponseBody
 	public String saveOrUpdate(Menu menu){
 		mongoDao.saveOrUpdate(menu);
 		return SystemMessage.getMessage("success");
 	}
 	
-	@RequestMapping(value="/delete.html",produces="text/html;charset=utf-8")
+	@RequestMapping(value="/delete",produces="text/html;charset=utf-8")
 	@ResponseBody
 	public String delMenu(Menu menu){
 		mongoDao.del(menu, true);
 		return SystemMessage.getMessage("deleteSuccess");
 	}
 	
-	@RequestMapping(value="/submenuList.html")
+	@RequestMapping(value="/submenuList")
 	public String openSubmenuList(Menu menu,Model model){
 		List<Submenu> submenuList = systemService.getSubmenuList(menu);
 		model.addAttribute("submenuList", submenuList);
@@ -48,21 +48,21 @@ public class MenuController {
 		return "WEB-INF/views/menu/submenu.jsp";
 	}
 	
-	@RequestMapping(value="/saveSubmenu.html",produces="text/html;charset=utf-8")
+	@RequestMapping(value="/saveSubmenu",produces="text/html;charset=utf-8")
 	@ResponseBody
 	public String saveSubmenu(ObjectId menuId, Submenu submenu){
 		systemService.saveSubmenu(menuId, submenu);
 		return SystemMessage.getMessage("success");
 	}
 	
-	@RequestMapping(value="/delSubmenu.html",produces="text/html;charset=utf-8")
+	@RequestMapping(value="/delSubmenu",produces="text/html;charset=utf-8")
 	@ResponseBody
 	public String delSubmenu(Submenu submenu){
 		mongoDao.del(submenu);
 		return SystemMessage.getMessage("deleteSuccess");
 	}
 	
-	@RequestMapping(value="/menuList.html")
+	@RequestMapping(value="/menuList")
 	public String getMenuList(Role role, Model model){
 		List<Menu> menuList = systemService.getMenuList();
 		role = mongoDao.get(Role.class, role.getId());

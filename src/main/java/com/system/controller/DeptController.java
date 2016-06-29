@@ -29,7 +29,7 @@ public class DeptController {
 	 * @param criteria 查询条件集合
 	 * @return 节点信息集合的JSON字符串形式
 	 */
-	@RequestMapping(value="/getDeptTree.html",
+	@RequestMapping(value="/getDeptTree",
 			method=RequestMethod.POST,produces="text/html;charset=utf-8")
 	@ResponseBody
 	public String getDeptTreeJson(@RequestParam Map<String,Object> criteria){
@@ -45,7 +45,7 @@ public class DeptController {
 	 * @param dept
 	 * @return
 	 */
-	@RequestMapping(value="/save.html",produces="text/html;charset=utf-8")
+	@RequestMapping(value="/save",produces="text/html;charset=utf-8")
 	@ResponseBody
 	public String saveDept(Dept dept) {
 		mongoDao.saveOrUpdate(dept);
@@ -56,7 +56,7 @@ public class DeptController {
 	 * @param dept
 	 * @return
 	 */
-	@RequestMapping(value="/delete.html",produces="text/html;charset=utf-8")
+	@RequestMapping(value="/delete",produces="text/html;charset=utf-8")
 	@ResponseBody
 	public String deleteDept(Dept dept) {
 		Map<String,Object> criteriaMap = new HashMap<String,Object>();

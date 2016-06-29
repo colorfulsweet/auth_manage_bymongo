@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<form action="role/saveRoleMenu.html" method="post" id="role_menu">
+<form action="role/saveRoleMenu" method="post" id="role_menu">
 <input type="hidden" name="roleId" value="${role.id}" />
 <table class="bordered" id="menuList" >
 	<tr>

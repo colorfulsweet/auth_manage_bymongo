@@ -45,7 +45,7 @@ public class UserController {
 	 * @param user
 	 * @return 执行结果信息JSON
 	 */
-	@RequestMapping(value="/save.html",produces="text/html;charset=utf-8")
+	@RequestMapping(value="/save",produces="text/html;charset=utf-8")
 	@ResponseBody
 	public String saveUser(User user){
 		user.setPassword(DigestUtils.sha256Hex(user.getPassword()));
@@ -74,7 +74,7 @@ public class UserController {
 	 * @param user
 	 * @return 执行结果信息JSON
 	 */
-	@RequestMapping(value="/delete.html",produces="text/html;charset=utf-8")
+	@RequestMapping(value="/delete",produces="text/html;charset=utf-8")
 	@ResponseBody
 	public String delUser(User user){
 		mongoDao.del(user);
@@ -85,7 +85,7 @@ public class UserController {
 	 * @param ids
 	 * @return 执行结果信息JSON
 	 */
-	@RequestMapping(value="/deleteUsers.html",produces="text/html;charset=utf-8")
+	@RequestMapping(value="/deleteUsers",produces="text/html;charset=utf-8")
 	@ResponseBody
 	public String delUsers(@RequestParam(value="userId")ObjectId[] ids){
 		if(ids==null || ids.length==0){
@@ -100,7 +100,7 @@ public class UserController {
 	 * @param iconFile
 	 * @return 执行结果信息JSON
 	 */
-	@RequestMapping(value="/uploadIcon.html",method=RequestMethod.POST,produces="text/html;charset=utf-8")
+	@RequestMapping(value="/uploadIcon",method=RequestMethod.POST,produces="text/html;charset=utf-8")
 	@ResponseBody
 	public String uploadIcon(HttpSession httpSession,@RequestParam("iconFile") MultipartFile iconFile){
 		User user = (User) httpSession.getAttribute("user");
@@ -123,7 +123,7 @@ public class UserController {
 	 * @param session
 	 * @param response
 	 */
-	@RequestMapping(value="/getIcon.html",method=RequestMethod.GET)
+	@RequestMapping(value="/getIcon",method=RequestMethod.GET)
 	public void getUserIcon(HttpSession session,HttpServletResponse response){
 		User user = (User) session.getAttribute("user");
 		try{

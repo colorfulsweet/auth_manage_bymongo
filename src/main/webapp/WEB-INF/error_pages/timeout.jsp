@@ -22,7 +22,7 @@
 	} catch (e) {
 		document.getElementById("error_info").innerHTML = error_info;
 		setTimeout(function(){
-			document.location = "/${project_name}/index.jsp";
+			document.location = "/${project_name}/index";
 		},1000);
 	}
 })();

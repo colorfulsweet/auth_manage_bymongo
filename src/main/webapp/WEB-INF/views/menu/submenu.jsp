@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<form action="menu/saveSubmenu.html" method="post" id="submenus">
+<form action="menu/saveSubmenu" method="post" id="submenus">
 <input type="hidden" name="menu.id" value="${menu.id}" />
 <table class="bordered" id="submenuList" >
 	<tr>
@@ -16,7 +16,7 @@
 		<td>${submenu.url}</td>
 		<td>${submenu.remark}</td>
 		<td>
-			<a href="menu/delSubmenu.html?id=${submenu.id}" class="delSubmenu fa fa-trash" >
+			<a href="menu/delSubmenu?id=${submenu.id}" class="delSubmenu fa fa-trash" >
 				<span>删除</span>
 			</a>
 		</td>

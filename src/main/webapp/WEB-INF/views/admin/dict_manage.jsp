@@ -6,7 +6,7 @@
 <html>
 <head></head>
 <body>
-<form action="admin/dictManage.html" method="post" >
+<form action="admin/dictManage" method="post" >
 	<div class="tab-search">
 		<ul>
 			<li>字典编码：<input type="text" name="dictCode" value="${dictCode}"/></li>
@@ -21,7 +21,7 @@
 	</div>
 </form>
 <div class="btn-header">
-	<a href="page/addOrUpdateDict.html" class="easyui-linkbutton addDict" data-options="iconCls:'icon-add'" >添加字典</a>
+	<a href="page/addOrUpdateDict" class="easyui-linkbutton addDict" data-options="iconCls:'icon-add'" >添加字典</a>
 </div>
 <table class="bordered" id="dictList">
 	<tr>
@@ -42,10 +42,10 @@
 			<a href="javascript:void(0);" dictid="${dict.id}" class="dict_clause fa fa-bars">
 				<span>字典项</span>
 			</a>
-			<a href="page/addOrUpdateDict.html?id=${dict.id}" class="editDict fa fa-edit">
+			<a href="page/addOrUpdateDict?id=${dict.id}" class="editDict fa fa-edit">
 				<span>编辑</span>
 			</a>
-			<a href="dict/delete.html?id=${dict.id}" class="delDict fa fa-trash" >
+			<a href="dict/delete?id=${dict.id}" class="delDict fa fa-trash" >
 				<span>删除</span>
 			</a>
 		</td>
@@ -62,7 +62,7 @@ $(function(){
 	$("#DictClause").prev(".pageSplit").find("a.page_btn").on("click",$css.jumpPage);
 	//给删除添加委托事件
 	$("#dictList")
-	.on("click","a.delDict",{url:"admin/dictManage.html"},$css.delRecord)
+	.on("click","a.delDict",{url:"admin/dictManage"},$css.delRecord)
 	.on("click","a.editDict",{tabName:"编辑字典"},$css.editRecord);
 	$("a.addDict").on("click",{tabName:"添加字典"},$css.editRecord);
 	/**
@@ -85,7 +85,7 @@ $(function(){
 			height: 400,
 			closed: false,
 			cache: false,
-			href: "dict/dictClause.html?id="+dictId,
+			href: "dict/dictClause?id="+dictId,
 			buttons:[{
 				text:"保存",
 				handler:save,

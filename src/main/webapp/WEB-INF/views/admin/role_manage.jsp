@@ -6,7 +6,7 @@
 <html>
 <head></head>
 <body>
-<form action="admin/roleManage.html" method="post" >
+<form action="admin/roleManage" method="post" >
 	<div class="tab-search">
 		<ul>
 			<li>角色名称：<input type="text" name="roleName" value="${roleName}"/></li>
@@ -28,7 +28,7 @@
 	</div>
 </form>
 <div class="btn-header">
-	<a href="page/addOrUpdateRole.html" class="easyui-linkbutton addRole" data-options="iconCls:'icon-add'" >创建角色</a>
+	<a href="page/addOrUpdateRole" class="easyui-linkbutton addRole" data-options="iconCls:'icon-add'" >创建角色</a>
 </div>
 <table class="bordered" id="roleList" >
 	<tr>
@@ -46,10 +46,10 @@
 			<a href="javascript:void(0);" class="role-menu fa fa-location-arrow"  roleid="${role.id}">
 				<span>菜单配置</span>
 			</a>
-			<a href="page/addOrUpdateRole.html?id=${role.id}" class="editRole fa fa-edit" >
+			<a href="page/addOrUpdateRole?id=${role.id}" class="editRole fa fa-edit" >
 				<span>编辑</span>
 			</a>
-			<a href="role/delete.html?id=${role.id}" class="delRole fa fa-trash" >
+			<a href="role/delete?id=${role.id}" class="delRole fa fa-trash" >
 				<span>删除</span>
 			</a>
 		</td>
@@ -66,7 +66,7 @@ $(function(){
 	$("#roleList").next(".pageSplit").find("a.page_btn").on("click",$css.jumpPage);
 	$("a.addRole").on("click",{tabName:"创建角色"},$css.editRecord);
 	$("#roleList")
-	.on("click","a.delRole",{url:"admin/roleManage.html"},$css.delRecord)
+	.on("click","a.delRole",{url:"admin/roleManage"},$css.delRecord)
 	.on("click","a.editRole",{tabName:"编辑角色"},$css.editRecord);
 	var openRoleMenu = function(event){
 		var roleId = $(event.currentTarget).attr("roleid");
@@ -77,7 +77,7 @@ $(function(){
 			height: 400,
 			closed: false,
 			cache: false,
-			href: "menu/menuList.html?id="+roleId,
+			href: "menu/menuList?id="+roleId,
 			buttons:[{
 				text:"保存",
 				handler:save,

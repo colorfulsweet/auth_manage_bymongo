@@ -7,7 +7,7 @@
 		<a href="javascript:;" class="easyui-linkbutton" id="addDept" data-options="iconCls:'icon-add'" >创建部门</a>
 		<a href="javascript:;" class="easyui-linkbutton" id="delDept" data-options="iconCls:'icon-remove'" >删除部门</a>
 	</div>
-	<form class="addDeptForm" method="post" action="dept/save.html" onSubmit="return $css.ajaxSubmit(this,'admin/deptManage.html',true)">
+	<form class="addDeptForm" method="post" action="dept/save" onSubmit="return $css.ajaxSubmit(this,'admin/deptManage',true)">
 		<input type="hidden" name="id" value="{{id}}" />
 		<table class="table-input">
 			<tr>
@@ -42,7 +42,7 @@
 </div>
 <script>
 $(function(){
-	var url = "dept/getDeptTree.html";
+	var url = "dept/getDeptTree";
 	var appendNode = function(node){
 		$.post(url, {parentId:node.id},function(response){
 			//标记当前节点的下级节点已加载过

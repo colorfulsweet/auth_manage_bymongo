@@ -15,7 +15,7 @@
 	<center>
 		<img src="${basePath}images/500.png" title="服务器内部错误"/>
 		<br/>
-		<a href="${basePath}page/index.html"> 返回首页</a>
+		<a href="${basePath}page/index"> 返回首页</a>
 	 	
 		<div class="StackTrace">
 	<%

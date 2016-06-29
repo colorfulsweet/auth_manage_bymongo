@@ -26,7 +26,7 @@ public class DictController {
 	@Autowired
 	private IMongoDao mongoDao;
 	
-	@RequestMapping(value="/dictClause.html")
+	@RequestMapping(value="/dictClause")
 	public String getDictClause(Dict dict,Model model){
 		List<DictClause> dictClauses = dictService.getDictClauseList(dict);
 		model.addAttribute("dictClauseList", dictClauses);
@@ -34,14 +34,14 @@ public class DictController {
 		return "WEB-INF/views/dict/dict_clause.jsp";
 	}
 	
-	@RequestMapping(value="/saveClause.html",produces="text/html;charset=utf-8")
+	@RequestMapping(value="/saveClause",produces="text/html;charset=utf-8")
 	@ResponseBody
 	public String saveDictClause(@RequestParam("dictId")ObjectId dictId, DictClause dictClause){
 		dictService.saveDictClause(dictId,dictClause);
 		return SystemMessage.getMessage("success");
 	}
 	
-	@RequestMapping(value="/delClause.html",produces="text/html;charset=utf-8")
+	@RequestMapping(value="/delClause",produces="text/html;charset=utf-8")
 	@ResponseBody
 	public String delClause(@RequestParam("dictId")ObjectId dictId, DictClause dictClause){
 		Dict dict = mongoDao.get(Dict.class, dictId);
@@ -54,14 +54,14 @@ public class DictController {
 		return SystemMessage.getMessage("deleteSuccess");
 	}
 	
-	@RequestMapping(value="/save.html",produces="text/html;charset=utf-8")
+	@RequestMapping(value="/save",produces="text/html;charset=utf-8")
 	@ResponseBody
 	public String saveDict(Dict dict){
 		mongoDao.saveOrUpdate(dict);
 		return SystemMessage.getMessage("success");
 	}
 	
-	@RequestMapping(value="/delete.html",produces="text/html;charset=utf-8")
+	@RequestMapping(value="/delete",produces="text/html;charset=utf-8")
 	@ResponseBody
 	public String delDict(Dict dict){
 		mongoDao.del(dict,true);
