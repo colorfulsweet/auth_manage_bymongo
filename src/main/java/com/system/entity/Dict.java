@@ -24,7 +24,7 @@ public class Dict implements Serializable {
 	private String dictName;//字典名称
 	private String remark;//备注
 	
-	@Reference
+	@Reference(ignoreMissing=true,lazy=true)
 	private List<DictClause> clauses;//字典项列表
 	/**
 	 * 字典条目

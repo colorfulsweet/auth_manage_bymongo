@@ -55,7 +55,6 @@
 <div class="pageSplit">
 	<cp:pageSplit page="${page}" />
 </div>
-<div id="DictClause" ></div>
 <script type="text/javascript" >
 $(function(){
 	//给分页按钮添加点击事件
@@ -79,13 +78,17 @@ $(function(){
 			var $form = $("form#dictClause");
 			$css.addLine($form.find("tr:last span.comment"));
 		};
-		$("#DictClause").dialog({
+		$("<div></div>").dialog({
 		    title: "配置字典项",
 			width: 600,
 			height: 400,
 			closed: false,
 			cache: false,
+			modal: true,
 			href: "dict/dictClause?id="+dictId,
+			onClose : function() {
+                $(this).dialog("destroy");
+            },
 			buttons:[{
 				text:"保存",
 				handler:save,

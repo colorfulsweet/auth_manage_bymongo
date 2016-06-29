@@ -25,7 +25,7 @@ public class Menu implements Serializable,Comparable<Menu> {
 	private String icon;//图标编码
 	private String remark;//备注
 	private int menuIndex;
-	@Reference
+	@Reference(ignoreMissing=true,lazy=true)
 	private List<Submenu> childrenMenu;//子菜单
 	/**
 	 * 子菜单实体类

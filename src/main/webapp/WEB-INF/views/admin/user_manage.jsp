@@ -75,7 +75,6 @@
 <div class="pageSplit">
 	<cp:pageSplit page="${page}" />
 </div>
-<div id="userRole"></div>
 <script type="text/javascript" >
 $(function(){
 	//给分页按钮添加点击事件
@@ -90,13 +89,17 @@ $(function(){
 	var openUserRole = function(event){
 		var userId = $(event.currentTarget).attr("userid");
 		var save = $css.buildDialogSave({formId : "user_role",dialogId : "userRole"});
-		$("#userRole").dialog({
+		$("<div></div>").dialog({
 		    title: "配置用户角色",
 			width: 600,
 			height: 400,
 			closed: false,
 			cache: false,
+			modal: true,
 			href: "role/roleList?id="+userId,
+			onClose : function() {
+                $(this).dialog("destroy");
+            },
 			buttons:[{
 				text:"保存",
 				handler:save,

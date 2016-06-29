@@ -25,9 +25,9 @@ public class Role implements Serializable {
 	private Date createTime;//创建时间
 	private String remark;//备注
 	
-	@Reference
+	@Reference(ignoreMissing=true,lazy=true)
 	private Set<Menu> menus;//该角色对应的菜单
-	@Reference
+	@Reference(ignoreMissing=true,lazy=true)
 	private Set<Auth> auths;//该角色对应的权限
 	public ObjectId getId() {
 		return id;

@@ -60,7 +60,6 @@
 <div class="pageSplit">
 	<cp:pageSplit page="${page}" />
 </div>
-<div id="roleMenu"></div>
 <script>
 $(function(){
 	$("#roleList").next(".pageSplit").find("a.page_btn").on("click",$css.jumpPage);
@@ -71,13 +70,17 @@ $(function(){
 	var openRoleMenu = function(event){
 		var roleId = $(event.currentTarget).attr("roleid");
 		var save = $css.buildDialogSave({formId : "role_menu",dialogId : "roleMenu"});
-		$("#roleMenu").dialog({
+		$("<div></div>").dialog({
 		    title: "配置角色权限",
 			width: 600,
 			height: 400,
 			closed: false,
 			cache: false,
+			modal: true,
 			href: "menu/menuList?id="+roleId,
+			onClose : function() {
+                $(this).dialog("destroy");
+            },
 			buttons:[{
 				text:"保存",
 				handler:save,

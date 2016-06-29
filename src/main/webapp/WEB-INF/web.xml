@@ -5,9 +5,6 @@
             http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	id="WebApp_ID" version="3.0">
 	<display-name>auth_manage</display-name>
-	<welcome-file-list>
-		<welcome-file>page/index</welcome-file>
-	</welcome-file-list>
 	
 	<!-- 配置文件路径 -->
 	<context-param>

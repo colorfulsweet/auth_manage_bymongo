@@ -30,7 +30,7 @@ public class User implements Serializable {
 	private String email;//邮箱
 	private String tel;//电话
 	private Boolean status;//状态
-	@Reference
+	@Reference(ignoreMissing=true)
 	private Role role;//用户角色
 	
 	public User(){}

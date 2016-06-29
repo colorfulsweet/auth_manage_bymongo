@@ -58,7 +58,6 @@
 <div class="pageSplit">
 	<cp:pageSplit page="${page}" />
 </div>
-<div id="subMenu"></div>
 <script type="text/javascript">
 $(function(){
 	$("#subMenu").prev(".pageSplit").find("a.page_btn").on("click",$css.jumpPage);
@@ -77,13 +76,17 @@ $(function(){
 			var $form = $("form#submenus");
 			$css.addLine($form.find("tr:last span.comment"));
 		};
-		$("#subMenu").dialog({
+		$("<div></div>").dialog({
 		    title: "配置子菜单",
 			width: 600,
 			height: 400,
 			closed: false,
 			cache: false,
+			modal: true,
 			href: "menu/submenuList?id="+menuId,
+			onClose : function() {
+                $(this).dialog("destroy");
+            },
 			buttons:[{
 				text:"保存",
 				handler:save,
@@ -95,7 +98,7 @@ $(function(){
 			}]
 		});
 	};
-	$("#menuList").on("click","a.submenu-list",openSubmenuList)
+	$("#menuList").on("click","a.submenu-list",openSubmenuList);
 });
 </script>
 </body>
