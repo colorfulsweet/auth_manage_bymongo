@@ -50,7 +50,7 @@ public class DictController {
 		//TODO 此处有bug, 当List为空时, update操作并没有把clauses改为空数组
 		//最后一个元素的引用还在
 		mongoDao.update(dict);
-		mongoDao.del(dictClause);
+		mongoDao.delete(dictClause);
 		return SystemMessage.getMessage("deleteSuccess");
 	}
 	
@@ -64,7 +64,8 @@ public class DictController {
 	@RequestMapping(value="/delete",produces="text/html;charset=utf-8")
 	@ResponseBody
 	public String delDict(Dict dict){
-		mongoDao.del(dict,true);
+		//TODO 验证子表是否存在关联数据
+		mongoDao.delete(dict);
 		return SystemMessage.getMessage("deleteSuccess");
 	}
 }

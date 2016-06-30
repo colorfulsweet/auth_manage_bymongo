@@ -77,7 +77,7 @@ public class UserController {
 	@RequestMapping(value="/delete",produces="text/html;charset=utf-8")
 	@ResponseBody
 	public String delUser(User user){
-		mongoDao.del(user);
+		mongoDao.delete(user);
 		return SystemMessage.getMessage("deleteSuccess");
 	}
 	/**

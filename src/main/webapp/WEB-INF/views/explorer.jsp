@@ -9,7 +9,7 @@
 <html>
 <head>
 	<title>${app_name}</title>
-
+	<meta name="renderer" content="webkit"><%-- 采用高速模式渲染页面 --%>
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">		

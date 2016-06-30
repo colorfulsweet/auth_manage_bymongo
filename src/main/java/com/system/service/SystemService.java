@@ -58,7 +58,7 @@ public class SystemService implements ISystemService {
 	
 	@Override
 	public void delUsers(ObjectId[] ids) {
-		mongoDao.delAll(User.class, ids);
+		mongoDao.deleteAll(User.class, ids);
 	}
 	
 	@Override

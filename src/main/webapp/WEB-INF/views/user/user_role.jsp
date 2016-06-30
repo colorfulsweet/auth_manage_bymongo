@@ -1,5 +1,6 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <form action="role/saveUserRole" method="post" id="user_role">
 <input type="hidden" name="userId" value="${_user.id}" />
@@ -15,7 +16,7 @@
 			<c:if test="${role.id.equals(_user.role.id)}">checked="true"</c:if>
 		  /></td>
 		<td>${role.roleName}</td>
-		<td>${role.createTime}</td>
+		<td><fmt:formatDate value="${role.createTime}" type="date" pattern="yyyy年MM月dd日 HH:mm"/></td>
 	</tr>
 	</c:forEach>
 </table>

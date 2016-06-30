@@ -49,7 +49,7 @@ public class RoleController {
 	@RequestMapping(value="/delete",produces="text/html;charset=utf-8")
 	@ResponseBody
 	public String delRole(Role role){
-		mongoDao.del(role);
+		mongoDao.delete(role);
 		return SystemMessage.getMessage("deleteSuccess");
 	}
 	

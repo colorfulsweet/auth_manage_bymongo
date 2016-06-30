@@ -13,6 +13,7 @@ import java.util.Set;
 import org.apache.log4j.Logger;
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.Datastore;
+import org.mongodb.morphia.Key;
 import org.mongodb.morphia.Morphia;
 import org.mongodb.morphia.query.Criteria;
 import org.mongodb.morphia.query.Query;
@@ -20,6 +21,7 @@ import org.mongodb.morphia.query.UpdateOperations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.mongodb.WriteResult;
 import com.system.service.annotation.CriteriaField;
 import com.system.tags.Page;
 import com.system.util.ReflectUtils;
@@ -42,59 +44,60 @@ public class MongoDao implements IMongoDao {
 	}
 	
 	@Override
-	public void save(Object item) {
-		datastore.save(item);
+	public Key<Object> save(Object item) {
+		return datastore.save(item);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public void update(Object item) {
+	public WriteResult update(Object item) {
 		UpdateOperations<Object> ops = (UpdateOperations<Object>) datastore.createUpdateOperations(item.getClass());
 		try {
 			ReflectUtils.updateOperationsHandle(item, ops);
-			datastore.update(item, ops);
+			return datastore.update(item, ops).getWriteResult();
 		} catch (Exception e) {
 			log.error("数据更新失败", e);
+			return null;
 		}
 	}
 
 	@Override
-	public void saveOrUpdate(Object item) {
+	public Object saveOrUpdate(Object item) {
 		if(morphia.getMapper().getId(item) == null) {
-			save(item);
+			return save(item);
 		} else {
-//			merge(item);
-			update(item);
+			return update(item);
 		}
 	}
 	
 	@Override
-	public void merge(Object item) {
-		datastore.merge(item);
+	public Key<Object> merge(Object item) {
+		return datastore.merge(item);
 	}
 	
 	@Override
-	public void del(Object item) {
-		datastore.delete(item);
+	public WriteResult delete(Object item) {
+		return datastore.delete(item);
 	}
-
+/*
 	@Override
-	public void del(Object item, boolean cascade) {
+	public WriteResult delete(Object item, boolean cascade) {
 		if(!cascade) {
-			del(item);
+			return delete(item);
 		} else {
 			//TODO 获取到对象中的@Reference引用,进行级联删除
-			
-			del(item);
+			return delete(item);
 		}
 	}
+	*/
+	
 	@Override
-	public <T> void delAll(Class<T> cls, ObjectId... keys){
+	public <T> void deleteAll(Class<T> cls, ObjectId... keys){
 		datastore.delete(cls, keys);
 	}
 	
 	@Override
-	public <T> void delAll(Class<T> cls, Map<String, Object> criteriaMap) {
+	public <T> void deleteAll(Class<T> cls, Map<String, Object> criteriaMap) {
 		Set<Entry<String,Object>> enties = criteriaMap.entrySet();
 		Query<T> query = datastore.createQuery(cls);
 		for(Entry<String,Object> entry : enties) {

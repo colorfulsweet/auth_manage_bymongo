@@ -36,7 +36,8 @@ public class MenuController {
 	@RequestMapping(value="/delete",produces="text/html;charset=utf-8")
 	@ResponseBody
 	public String delMenu(Menu menu){
-		mongoDao.del(menu, true);
+		//TODO 验证子表是否存在关联数据
+		mongoDao.delete(menu);
 		return SystemMessage.getMessage("deleteSuccess");
 	}
 	
@@ -58,7 +59,7 @@ public class MenuController {
 	@RequestMapping(value="/delSubmenu",produces="text/html;charset=utf-8")
 	@ResponseBody
 	public String delSubmenu(Submenu submenu){
-		mongoDao.del(submenu);
+		mongoDao.delete(submenu);
 		return SystemMessage.getMessage("deleteSuccess");
 	}
 	

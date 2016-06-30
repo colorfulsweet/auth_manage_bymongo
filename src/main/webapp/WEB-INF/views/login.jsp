@@ -9,6 +9,7 @@
 <html>
 <head>
 	<title>${app_name}-登陆</title>
+	<meta name="renderer" content="webkit"><%-- 采用高速模式渲染页面 --%>
 	<link rel="shortcut icon" type="image/x-icon" href="${basePath}${icon_path}" media="screen" />
 	<link rel="stylesheet" type="text/css" href="${basePath}css/login.css" />
 </head>

@@ -70,7 +70,7 @@ $(function(){
 	var openRoleMenu = function(event){
 		var roleId = $(event.currentTarget).attr("roleid");
 		var save = $css.buildDialogSave({formId : "role_menu",dialogId : "roleMenu"});
-		$("<div></div>").dialog({
+		$("<div id='roleMenu'></div>").dialog({
 		    title: "配置角色权限",
 			width: 600,
 			height: 400,
@@ -87,7 +87,7 @@ $(function(){
 				iconCls:"icon-save"
 			},{
 				text:"取消",
-				handler:function(){$("#roleMenu").dialog("close");},
+				handler:function(){$("#roleMenu").dialog("destroy");},
 				iconCls:"icon-cancel"
 			}]
 		});

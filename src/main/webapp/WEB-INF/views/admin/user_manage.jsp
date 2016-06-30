@@ -89,7 +89,7 @@ $(function(){
 	var openUserRole = function(event){
 		var userId = $(event.currentTarget).attr("userid");
 		var save = $css.buildDialogSave({formId : "user_role",dialogId : "userRole"});
-		$("<div></div>").dialog({
+		$("<div id='userRole'></div>").dialog({
 		    title: "配置用户角色",
 			width: 600,
 			height: 400,

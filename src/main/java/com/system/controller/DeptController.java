@@ -61,8 +61,8 @@ public class DeptController {
 	public String deleteDept(Dept dept) {
 		Map<String,Object> criteriaMap = new HashMap<String,Object>();
 		criteriaMap.put("parentId", dept.getId());
-		mongoDao.delAll(Dept.class, criteriaMap);
-		mongoDao.del(dept);
+		mongoDao.deleteAll(Dept.class, criteriaMap);
+		mongoDao.delete(dept);
 		return SystemMessage.getMessage("success");
 	}
 }

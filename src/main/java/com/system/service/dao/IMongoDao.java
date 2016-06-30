@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.bson.types.ObjectId;
+import org.mongodb.morphia.Key;
 
+import com.mongodb.WriteResult;
 import com.system.tags.Page;
 
 public interface IMongoDao {
@@ -18,45 +20,51 @@ public interface IMongoDao {
 	/**
 	 * 新增(保存)
 	 * @param item
+	 * @return 新增数据的ID
 	 */
-	public void save(Object item);
+	public Key<Object> save(Object item);
 	/**
 	 * 更新
 	 * @param item
+	 * @return 写入数据的结果
 	 */
-	public void update(Object item);
+	public WriteResult update(Object item);
 	/**
 	 * 保存或更新
 	 * @param item
+	 * @return 写入数据的结果或新增数据的ID
 	 */
-	public void saveOrUpdate(Object item);
+	public Object saveOrUpdate(Object item);
 	/**
 	 * 合并
 	 * @param item
+	 * @return 被合并数据的ID
 	 */
-	public void merge(Object item);
+	public Key<Object> merge(Object item);
 	/**
 	 * 删除
 	 * @param item
+	 * @return 删除数据的执行结果
 	 */
-	public void del(Object item);
+	public WriteResult delete(Object item);
 	/**
 	 * 删除(可级联删除子表关联数据)
 	 * @param item
 	 * @param cascade 是否级联删除
+	 * @return 删除数据的执行结果
 	 */
-	public void del(Object item,boolean cascade);
+//	public WriteResult delete(Object item,boolean cascade);
 	/**
 	 * 批量删除
 	 * @param items
 	 */
-	public <T> void delAll(Class<T> cls, ObjectId... keys);
+	public <T> void deleteAll(Class<T> cls, ObjectId... keys);
 	/**
 	 * 按照指定条件批量删除
 	 * @param cls
 	 * @param criteriaMap
 	 */
-	public <T> void delAll(Class<T> cls, Map<String,Object> criteriaMap);
+	public <T> void deleteAll(Class<T> cls, Map<String,Object> criteriaMap);
 	/**
 	 * 查询全集
 	 * @param cls
