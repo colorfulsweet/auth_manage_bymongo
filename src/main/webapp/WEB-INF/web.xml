@@ -4,33 +4,26 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
             http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	id="WebApp_ID" version="3.0">
-	<display-name>auth_manage</display-name>
+	<display-name>auth_manage_bymongo</display-name>
 	
-	<!-- 配置文件路径 -->
+	<!-- 应用基本信息 -->
 	<context-param>
-		<param-name >configPath</param-name>
-		<param-value>/appConfig.properties</param-value>
+		<param-name>project_name</param-name>
+		<param-value>auth_manage_bymongo</param-value>
+	</context-param>
+	<context-param>
+		<param-name>app_name</param-name>
+		<param-value>统一权限管理系统</param-value>
+	</context-param>
+	<context-param>
+		<param-name>icon_path</param-name>
+		<param-value>images/icon/feather.ico</param-value>
 	</context-param>
 	
 	<!-- Session超时时间60分钟 -->
 	<session-config>
 		<session-timeout>60</session-timeout>
 	</session-config>
-	
-	<!-- WebService配置 -->
-	<!-- 
-	<servlet>
-		<servlet-name>UserService</servlet-name>
-		<servlet-class>
-			com.sun.xml.ws.transport.http.servlet.WSServlet
-		</servlet-class>
- 		<load-on-startup>2</load-on-startup>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>UserService</servlet-name>
-		<url-pattern>/UserPort</url-pattern>
-	</servlet-mapping>
-	 -->
 	 
 	<!-- Spring配置 -->
 	<context-param>

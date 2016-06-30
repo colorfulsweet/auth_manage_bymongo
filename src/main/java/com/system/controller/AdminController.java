@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.system.entity.Dict;
 import com.system.entity.Menu;
+import com.system.entity.Msg;
 import com.system.entity.Role;
 import com.system.entity.User;
 import com.system.service.dao.IMongoDao;
@@ -105,5 +106,20 @@ public class AdminController {
 		
 		return "/WEB-INF/views/admin/auth_manage.jsp";
 	}
-	
+	/**
+	 * 消息数据管理
+	 * @param model
+	 * @param page
+	 * @param criteria 查询条件
+	 * @return
+	 */
+	@RequestMapping(value="/msgManage")
+	public String msgManage(Model model, Page page, @RequestParam Map<String,Object> criteria){
+		CharactorUtils.charactorHandle(criteria);
+		page.setLinkUrl("admin/msgManage");
+		mongoDao.dir(Msg.class, page, criteria);
+		model.addAllAttributes(criteria);
+		model.addAttribute("page", page);
+		return "/WEB-INF/views/admin/msg_manage.jsp";
+	}
 }

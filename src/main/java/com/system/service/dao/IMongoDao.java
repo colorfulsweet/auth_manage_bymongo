@@ -48,13 +48,6 @@ public interface IMongoDao {
 	 */
 	public WriteResult delete(Object item);
 	/**
-	 * 删除(可级联删除子表关联数据)
-	 * @param item
-	 * @param cascade 是否级联删除
-	 * @return 删除数据的执行结果
-	 */
-//	public WriteResult delete(Object item,boolean cascade);
-	/**
 	 * 批量删除
 	 * @param items
 	 */

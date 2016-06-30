@@ -210,7 +210,7 @@ table.table-input{
     padding: 10px 15px;
     border-bottom: 1px solid #f2f2f2;    
 }
-.table-input td input{
+.table-input td input,.table-input td select{
 	width:230px;
 }
 .table-input td textarea{

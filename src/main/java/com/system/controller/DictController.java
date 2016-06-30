@@ -47,8 +47,6 @@ public class DictController {
 		Dict dict = mongoDao.get(Dict.class, dictId);
 		List<DictClause> clauses = dict.getClauses();
 		clauses.remove(dictClause);
-		//TODO 此处有bug, 当List为空时, update操作并没有把clauses改为空数组
-		//最后一个元素的引用还在
 		mongoDao.update(dict);
 		mongoDao.delete(dictClause);
 		return SystemMessage.getMessage("deleteSuccess");
@@ -64,7 +62,10 @@ public class DictController {
 	@RequestMapping(value="/delete",produces="text/html;charset=utf-8")
 	@ResponseBody
 	public String delDict(Dict dict){
-		//TODO 验证子表是否存在关联数据
+		dict = mongoDao.get(Dict.class, dict.getId());
+		if(dict.getClauses()!=null && !dict.getClauses().isEmpty()) {
+			return SystemMessage.getMessage("hasChildNode");
+		}
 		mongoDao.delete(dict);
 		return SystemMessage.getMessage("deleteSuccess");
 	}

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.system.entity.Dict;
 import com.system.entity.Menu;
+import com.system.entity.Msg;
 import com.system.entity.Role;
 import com.system.entity.User;
 import com.system.service.ISystemService;
@@ -34,6 +35,10 @@ public class PageController {
 			return "WEB-INF/views/explorer.jsp";
 		}
 	}
+	/**
+	 * 欢迎页
+	 * @return
+	 */
 	@RequestMapping(value="/page/welcome")
 	public String toWelcome() {
 		return "WEB-INF/views/welcome.jsp";
@@ -95,7 +100,7 @@ public class PageController {
 	 * 新增/编辑数据字典请求
 	 * @param dict 只包含主键ID
 	 * @param model
-	 * @return 新增字典界面
+	 * @return 新增字典页面
 	 */
 	@RequestMapping(value="/page/addOrUpdateDict")
 	public String addOrUpdateDict(Dict dict,Model model){
@@ -109,7 +114,7 @@ public class PageController {
 	 * 新增/编辑菜单请求
 	 * @param menu 只包含主键ID
 	 * @param model
-	 * @return 新增菜单界面
+	 * @return 新增菜单页面
 	 */
 	@RequestMapping(value="/page/addOrUpdateMenu")
 	public String addOrUpdateMenu(Menu menu,Model model){
@@ -123,7 +128,7 @@ public class PageController {
 	 * 新增/编辑角色请求
 	 * @param role 只包含主键ID
 	 * @param model
-	 * @return 新增角色界面
+	 * @return 新增角色页面
 	 */
 	@RequestMapping(value="/page/addOrUpdateRole")
 	public String addOrUpdateRole(Role role,Model model){
@@ -133,7 +138,24 @@ public class PageController {
 		}
 		return "WEB-INF/views/role/add_role.jsp";
 	}
-	
+	/**
+	 * 新增/编辑消息请求
+	 * @param msg 只包含主键ID
+	 * @param model
+	 * @return 新增消息页面
+	 */
+	@RequestMapping(value="/page/addOrUpdateMsg")
+	public String addOrUpdateMsg(Msg msg,Model model){
+		if(msg.getId() != null){
+			msg = (Msg) mongoDao.get(Msg.class,msg.getId());
+			model.addAttribute("msg", msg);
+		}
+		return "WEB-INF/views/msg/add_msg.jsp";
+	}
+	/**
+	 * 个人设置页面
+	 * @return
+	 */
 	@RequestMapping(value="/page/personalConfig")
 	public String userPersonalConfig(){
 		return "WEB-INF/views/user/user_config.jsp";

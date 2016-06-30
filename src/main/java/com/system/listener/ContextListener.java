@@ -1,11 +1,5 @@
 package com.system.listener;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Map.Entry;
-import java.util.Properties;
-import java.util.Set;
-
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.annotation.WebListener;
@@ -27,8 +21,6 @@ import com.system.util.SpringUtils;
 public class ContextListener extends ContextLoaderListener {
 	private static Logger log = Logger.getLogger(ContextListener.class);
 	
-	private Properties props;
-	
 	private Log4jConfigListener log4jConfig;
 	
 	@Override
@@ -41,24 +33,14 @@ public class ContextListener extends ContextLoaderListener {
 		
 		ServletContext context = event.getServletContext();
 		//读取应用的基本配置信息
-		String configPath = context.getInitParameter("configPath");
-		props = new Properties();
-		InputStream input = ContextListener.class.getResourceAsStream(configPath);
-		if(input == null){
-			log.error("配置文件读取失败 : "+configPath);
-			return;
+		String[] paramNames = {"project_name", "app_name", "icon_path"};
+		log.info("===加载应用程序基本信息===");
+		for(String paramName : paramNames) {
+			String param = context.getInitParameter(paramName);
+			context.setAttribute(paramName, param);
+			log.info(paramName + " : " + param);
 		}
-		try {
-			props.load(input);
-			Set<Entry<Object, Object>> entries = props.entrySet();
-			log.info("===加载应用程序配置项===");
-			for(Entry<Object, Object>entry : entries) {
-				log.info(entry.getKey() + " : " + entry.getValue());
-				context.setAttribute(entry.getKey().toString(), entry.getValue());
-			}
-		} catch (IOException e) {
-			log.error("加载配置文件出错!",e);
-		}
+		
 		this.loadTimerTask();
 	}
 

@@ -79,17 +79,6 @@ public class MongoDao implements IMongoDao {
 	public WriteResult delete(Object item) {
 		return datastore.delete(item);
 	}
-/*
-	@Override
-	public WriteResult delete(Object item, boolean cascade) {
-		if(!cascade) {
-			return delete(item);
-		} else {
-			//TODO 获取到对象中的@Reference引用,进行级联删除
-			return delete(item);
-		}
-	}
-	*/
 	
 	@Override
 	public <T> void deleteAll(Class<T> cls, ObjectId... keys){

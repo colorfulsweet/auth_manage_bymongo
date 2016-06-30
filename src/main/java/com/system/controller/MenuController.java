@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.system.entity.Menu;
@@ -36,7 +37,10 @@ public class MenuController {
 	@RequestMapping(value="/delete",produces="text/html;charset=utf-8")
 	@ResponseBody
 	public String delMenu(Menu menu){
-		//TODO 验证子表是否存在关联数据
+		menu = mongoDao.get(Menu.class, menu.getId());
+		if(menu.getChildrenMenu()!=null && !menu.getChildrenMenu().isEmpty()){
+			return SystemMessage.getMessage("hasChildNode");
+		}
 		mongoDao.delete(menu);
 		return SystemMessage.getMessage("deleteSuccess");
 	}
@@ -51,14 +55,18 @@ public class MenuController {
 	
 	@RequestMapping(value="/saveSubmenu",produces="text/html;charset=utf-8")
 	@ResponseBody
-	public String saveSubmenu(ObjectId menuId, Submenu submenu){
+	public String saveSubmenu(@RequestParam("menuId")ObjectId menuId, Submenu submenu){
 		systemService.saveSubmenu(menuId, submenu);
 		return SystemMessage.getMessage("success");
 	}
 	
 	@RequestMapping(value="/delSubmenu",produces="text/html;charset=utf-8")
 	@ResponseBody
-	public String delSubmenu(Submenu submenu){
+	public String delSubmenu(@RequestParam("menuId")ObjectId menuId, Submenu submenu){
+		Menu menu = mongoDao.get(Menu.class, menuId);
+		List<Submenu> submenus = menu.getChildrenMenu();
+		submenus.remove(submenu);
+		mongoDao.update(menu);
 		mongoDao.delete(submenu);
 		return SystemMessage.getMessage("deleteSuccess");
 	}

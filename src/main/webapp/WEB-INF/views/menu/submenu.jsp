@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <form action="menu/saveSubmenu" method="post" id="submenus">
-<input type="hidden" name="menu.id" value="${menu.id}" />
+<input type="hidden" name="menuId" value="${menu.id}" />
 <table class="bordered" id="submenuList" >
 	<tr>
 		<th style="width:20%;">子菜单名称</th>
