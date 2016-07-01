@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -48,6 +50,12 @@ public class UserController {
 	@RequestMapping(value="/save",produces="text/html;charset=utf-8")
 	@ResponseBody
 	public String saveUser(User user){
+		//验证用户名是否已存在
+		Map<String, Object> criteriaMap = new HashMap<String, Object>();
+		criteriaMap.put("username", user.getUsername());
+		if(!mongoDao.dir(User.class, criteriaMap).isEmpty()){
+			return SystemMessage.getMessage("nameExist");
+		}
 		user.setPassword(DigestUtils.sha256Hex(user.getPassword()));
 		if(user.getStatus() == null) {
 			user.setStatus(false);

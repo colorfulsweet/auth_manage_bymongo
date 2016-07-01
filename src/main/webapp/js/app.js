@@ -91,16 +91,18 @@ var FuncTools = function(){
 			return arg.value;
 		});
 		$.post($(form).attr("action"),params,function(res){
-			res.callBack = function(){
-				var $tab = $("#content-tab");
-				var selected = $tab.tabs("getSelected");
-				if(!notClose){
-					$tab.tabs("close",$tab.tabs('getTabIndex',selected));
-				}
-				if(refreshUrl){
-					$("#content-tab").tabs("getSelected").panel("refresh", refreshUrl);
-				}
-			};
+			if(res.type !== "error") {
+				res.callBack = function(){
+					var $tab = $("#content-tab");
+					var selected = $tab.tabs("getSelected");
+					if(!notClose){
+						$tab.tabs("close",$tab.tabs('getTabIndex',selected));
+					}
+					if(refreshUrl){
+						$("#content-tab").tabs("getSelected").panel("refresh", refreshUrl);
+					}
+				};
+			}
 			new $.TipBox(res);
 		},"json");
 		return false;

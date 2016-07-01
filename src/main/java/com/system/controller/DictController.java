@@ -1,6 +1,8 @@
 package com.system.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +57,12 @@ public class DictController {
 	@RequestMapping(value="/save",produces="text/html;charset=utf-8")
 	@ResponseBody
 	public String saveDict(Dict dict){
+		//验证字典编码是否已存在
+		Map<String, Object> criteriaMap = new HashMap<String, Object>();
+		criteriaMap.put("dictCode", dict.getDictCode());
+		if(!mongoDao.dir(Dict.class, criteriaMap).isEmpty()){
+			return SystemMessage.getMessage("nameExist");
+		}
 		mongoDao.saveOrUpdate(dict);
 		return SystemMessage.getMessage("success");
 	}

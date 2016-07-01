@@ -6,7 +6,7 @@
 <html>
 <head></head>
 <body>
-<form action="admin/roleManage" method="post" >
+<form action="admin/msgManage" method="post" >
 	<div class="tab-search">
 		<ul>
 			<li>消息名称：<input type="text" name="name" value="${name}"/></li>
