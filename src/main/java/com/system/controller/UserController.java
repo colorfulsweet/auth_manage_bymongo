@@ -28,7 +28,11 @@ import com.system.service.ISystemService;
 import com.system.service.dao.IMongoDao;
 import com.system.util.ReflectUtils;
 import com.system.util.SystemMessage;
-
+/**
+ * 用户管理模块相关功能控制器
+ * @author 结发受长生
+ *
+ */
 @Controller
 @RequestMapping(value="/user")
 public class UserController {

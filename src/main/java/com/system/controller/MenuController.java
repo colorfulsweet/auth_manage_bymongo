@@ -16,7 +16,11 @@ import com.system.entity.Role;
 import com.system.service.ISystemService;
 import com.system.service.dao.IMongoDao;
 import com.system.util.SystemMessage;
-
+/**
+ * 菜单管理模块相关功能控制器
+ * @author 结发受长生
+ *
+ */
 @Controller
 @RequestMapping(value="/menu")
 public class MenuController {
@@ -26,14 +30,22 @@ public class MenuController {
 	
 	@Autowired
 	private ISystemService systemService;
-	
+	/**
+	 * 保存菜单
+	 * @param menu
+	 * @return
+	 */
 	@RequestMapping(value="/save",produces="text/html;charset=utf-8")
 	@ResponseBody
 	public String saveOrUpdate(Menu menu){
 		mongoDao.saveOrUpdate(menu);
 		return SystemMessage.getMessage("success");
 	}
-	
+	/**
+	 * 删除菜单
+	 * @param menu
+	 * @return
+	 */
 	@RequestMapping(value="/delete",produces="text/html;charset=utf-8")
 	@ResponseBody
 	public String delMenu(Menu menu){
@@ -44,7 +56,12 @@ public class MenuController {
 		mongoDao.delete(menu);
 		return SystemMessage.getMessage("deleteSuccess");
 	}
-	
+	/**
+	 * 根据菜单ID获取下级子菜单
+	 * @param menu
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="/submenuList")
 	public String openSubmenuList(Menu menu,Model model){
 		List<Submenu> submenuList = systemService.getSubmenuList(menu);
@@ -52,14 +69,24 @@ public class MenuController {
 		model.addAttribute("menu", menu);
 		return "WEB-INF/views/menu/submenu.jsp";
 	}
-	
+	/**
+	 * 保存子菜单
+	 * @param menuId
+	 * @param submenu
+	 * @return
+	 */
 	@RequestMapping(value="/saveSubmenu",produces="text/html;charset=utf-8")
 	@ResponseBody
 	public String saveSubmenu(@RequestParam("menuId")ObjectId menuId, Submenu submenu){
 		systemService.saveSubmenu(menuId, submenu);
 		return SystemMessage.getMessage("success");
 	}
-	
+	/**
+	 * 删除子菜单
+	 * @param menuId
+	 * @param submenu
+	 * @return
+	 */
 	@RequestMapping(value="/delSubmenu",produces="text/html;charset=utf-8")
 	@ResponseBody
 	public String delSubmenu(@RequestParam("menuId")ObjectId menuId, Submenu submenu){
@@ -70,7 +97,12 @@ public class MenuController {
 		mongoDao.delete(submenu);
 		return SystemMessage.getMessage("deleteSuccess");
 	}
-	
+	/**
+	 * 获取所有菜单项并根据角色ID获取对应的菜单
+	 * @param role
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="/menuList")
 	public String getMenuList(Role role, Model model){
 		List<Menu> menuList = systemService.getMenuList();

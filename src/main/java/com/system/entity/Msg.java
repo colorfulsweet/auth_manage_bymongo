@@ -7,7 +7,11 @@ import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
 import com.alibaba.fastjson.annotation.JSONType;
-
+/**
+ * 静态消息类
+ * @author 结发受长生
+ *
+ */
 @JSONType(ignores={"id","name"})
 @Entity("s_msg")
 public class Msg implements Serializable {

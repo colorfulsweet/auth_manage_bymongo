@@ -13,7 +13,7 @@ import com.system.entity.Msg;
 import com.system.service.dao.IMongoDao;
 
 /**
- * 系统消息工具类, 获取从message.properties加载的消息JSON
+ * 系统消息工具类, 获取从s_msg集合加载的消息JSON
  * @author 结发受长生
  *
  */

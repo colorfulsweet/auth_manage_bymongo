@@ -13,7 +13,7 @@ import com.logging.task.TimerTaskMuster;
 import com.system.util.SpringUtils;
 
 /**
- * Context监听器, 加载Spring配置以及appConfig中的若干应用配置项
+ * Context监听器, 加载Spring配置以及web.xml中的若干应用配置项
  * @author 结发受长生
  *
  */

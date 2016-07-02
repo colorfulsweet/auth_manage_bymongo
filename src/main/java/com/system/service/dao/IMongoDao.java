@@ -8,7 +8,11 @@ import org.mongodb.morphia.Key;
 
 import com.mongodb.WriteResult;
 import com.system.tags.Page;
-
+/**
+ * 公共DAO层, 包含基本的数据库操作功能
+ * @author 结发受长生
+ *
+ */
 public interface IMongoDao {
 	/**
 	 * 根据ID获取实体对象

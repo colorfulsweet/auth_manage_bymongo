@@ -16,7 +16,11 @@ import com.system.entity.User;
 import com.system.service.dao.IMongoDao;
 import com.system.tags.Page;
 import com.system.util.CharactorUtils;
-
+/**
+ * 各个模块主列表控制器
+ * @author 结发受长生
+ *
+ */
 @Controller
 @RequestMapping(value="/admin")
 public class AdminController {

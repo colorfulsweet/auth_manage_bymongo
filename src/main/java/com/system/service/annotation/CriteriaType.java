@@ -1,5 +1,9 @@
 package com.system.service.annotation;
-
+/**
+ * 查询方式枚举
+ * @author 结发受长生
+ *
+ */
 public enum CriteriaType {
 	// = 条件
 	EQ,

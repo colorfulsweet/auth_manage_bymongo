@@ -18,7 +18,11 @@ import com.system.entity.Role;
 import com.system.entity.User;
 import com.system.service.ISystemService;
 import com.system.service.dao.IMongoDao;
-
+/**
+ * 页面跳转相关功能控制器
+ * @author 结发受长生
+ *
+ */
 @Controller
 public class PageController {
 	@Autowired
@@ -26,7 +30,11 @@ public class PageController {
 	
 	@Autowired
 	private IMongoDao mongoDao;
-	
+	/**
+	 * 首页访问请求跳转 验证是否登录
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping({"/","/index"})
 	public String toIndex(HttpSession session) {
 		if(session.getAttribute("user") == null) {

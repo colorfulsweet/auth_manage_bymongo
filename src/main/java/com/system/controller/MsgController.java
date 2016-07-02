@@ -11,16 +11,24 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.system.entity.Msg;
 import com.system.service.dao.IMongoDao;
 import com.system.util.SystemMessage;
-
+/**
+ * 静态消息模块相关功能控制器
+ * @author 结发受长生
+ *
+ */
 @Controller
 @RequestMapping(value="/msg")
 public class MsgController {
 	@Autowired
 	private IMongoDao mongoDao;
-	
+	/**
+	 * 保存静态消息
+	 * @param msg
+	 * @return
+	 */
 	@RequestMapping(value="/save",produces="text/html;charset=utf-8")
 	@ResponseBody
-	public String saveRole(Msg msg){
+	public String saveMsg(Msg msg){
 		//验证该名称是否已存在
 		Map<String, Object> criteriaMap = new HashMap<String, Object>();
 		criteriaMap.put("name", msg.getName());
@@ -32,10 +40,14 @@ public class MsgController {
 		SystemMessage.putMessage(msg);
 		return SystemMessage.getMessage("success");
 	}
-	
+	/**
+	 * 删除静态消息
+	 * @param msg
+	 * @return
+	 */
 	@RequestMapping(value="/delete",produces="text/html;charset=utf-8")
 	@ResponseBody
-	public String delRole(Msg msg){
+	public String delMsg(Msg msg){
 		mongoDao.delete(msg);
 		return SystemMessage.getMessage("deleteSuccess");
 	}

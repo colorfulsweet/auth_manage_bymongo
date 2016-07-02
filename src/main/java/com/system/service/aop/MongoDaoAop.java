@@ -8,7 +8,11 @@ import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
-
+/**
+ * 对MongoDao当中进行的数据库操作进行日志记录的AOP切面
+ * @author 结发受长生
+ *
+ */
 @Aspect
 @Component
 public class MongoDaoAop {

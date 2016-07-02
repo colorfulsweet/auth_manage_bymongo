@@ -17,7 +17,11 @@ import com.system.entity.Dict.DictClause;
 import com.system.service.IDictService;
 import com.system.service.dao.IMongoDao;
 import com.system.util.SystemMessage;
-
+/**
+ * 数据字典模块相关功能控制器
+ * @author 结发受长生
+ *
+ */
 @Controller
 @RequestMapping(value="/dict")
 public class DictController {
@@ -27,7 +31,12 @@ public class DictController {
 	
 	@Autowired
 	private IMongoDao mongoDao;
-	
+	/**
+	 * 根据字典ID获取字典项
+	 * @param dict
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="/dictClause")
 	public String getDictClause(Dict dict,Model model){
 		List<DictClause> dictClauses = dictService.getDictClauseList(dict);
@@ -35,14 +44,24 @@ public class DictController {
 		model.addAttribute("dict",dict);
 		return "WEB-INF/views/dict/dict_clause.jsp";
 	}
-	
+	/**
+	 * 保存字典项
+	 * @param dictId
+	 * @param dictClause
+	 * @return
+	 */
 	@RequestMapping(value="/saveClause",produces="text/html;charset=utf-8")
 	@ResponseBody
 	public String saveDictClause(@RequestParam("dictId")ObjectId dictId, DictClause dictClause){
 		dictService.saveDictClause(dictId,dictClause);
 		return SystemMessage.getMessage("success");
 	}
-	
+	/**
+	 * 删除字典项
+	 * @param dictId
+	 * @param dictClause
+	 * @return
+	 */
 	@RequestMapping(value="/delClause",produces="text/html;charset=utf-8")
 	@ResponseBody
 	public String delClause(@RequestParam("dictId")ObjectId dictId, DictClause dictClause){
@@ -53,7 +72,11 @@ public class DictController {
 		mongoDao.delete(dictClause);
 		return SystemMessage.getMessage("deleteSuccess");
 	}
-	
+	/**
+	 * 保存数据字典
+	 * @param dict
+	 * @return
+	 */
 	@RequestMapping(value="/save",produces="text/html;charset=utf-8")
 	@ResponseBody
 	public String saveDict(Dict dict){
@@ -66,7 +89,11 @@ public class DictController {
 		mongoDao.saveOrUpdate(dict);
 		return SystemMessage.getMessage("success");
 	}
-	
+	/**
+	 * 删除数据字典
+	 * @param dict
+	 * @return
+	 */
 	@RequestMapping(value="/delete",produces="text/html;charset=utf-8")
 	@ResponseBody
 	public String delDict(Dict dict){
