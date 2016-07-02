@@ -43,7 +43,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 			HttpServletResponse response,
 			Object obj, 
 			ModelAndView model) throws Exception {
-		
+		//这里的时间是后台处理的时间, 而非整个HTTP请求处理完成的时间
 	}
 	
 	/**

@@ -13,6 +13,8 @@ import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.TagSupport;
 
+import org.apache.log4j.Logger;
+
 import com.system.entity.Dict;
 import com.system.entity.Dict.DictClause;
 import com.system.service.dao.IMongoDao;
@@ -24,6 +26,7 @@ import com.system.util.SpringMVCUtils;
  */
 public class SelectClauseTag extends TagSupport {
 	private static final long serialVersionUID = 8200571419076435613L;
+	private static final Logger log = Logger.getLogger(SelectClauseTag.class);
 	private String name;
 	private String value;
 	private String dictCode;
@@ -51,7 +54,7 @@ public class SelectClauseTag extends TagSupport {
 			out.println("</select>");
 			out.flush();
 		} catch (IOException e) {
-			e.printStackTrace();
+			log.error("字典项下拉框标签执行出错", e);
 		}
 		return EVAL_PAGE;
 	}

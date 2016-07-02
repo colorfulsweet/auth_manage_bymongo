@@ -45,7 +45,7 @@ public class MongoDaoAop {
 		Object[] arguments = joinPoint.getArgs();
 		String methodName = joinPoint.getSignature().getName();
 		Map<?,?> criteriaMap = null;
-		Class<?> clz = null;
+		Class<?> clz = Object.class;
 		for(Object argument : arguments) {
 			if(argument instanceof Map) {
 				criteriaMap = (Map<?, ?>) argument;

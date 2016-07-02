@@ -17,6 +17,7 @@ import java.util.Map;
 import javax.servlet.ServletContext;
 
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.log4j.Logger;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,7 +32,7 @@ import com.system.service.dao.IMongoDao;
 
 @Service
 public class SystemService implements ISystemService {
-	
+	private static final Logger log = Logger.getLogger(SystemService.class);
 	@Autowired
 	private IMongoDao mongoDao;
 	
@@ -125,10 +126,11 @@ public class SystemService implements ISystemService {
 	
 	private InputStream buildDefualtIconInput() {
 		String imagesFloder = context.getRealPath("images");
+		String defaultIconPath = imagesFloder + File.separator + "default_icon.png";
 		try {
-			return new FileInputStream(imagesFloder + File.separator + "default_icon.png");
+			return new FileInputStream(defaultIconPath);
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			log.error("文件未找到:"+defaultIconPath, e);
 			return null;
 		}
 	}

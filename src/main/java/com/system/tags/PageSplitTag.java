@@ -76,8 +76,7 @@ public class PageSplitTag extends TagSupport {
 			}
 			
 		} catch (IOException e){
-			e.printStackTrace();
-			log.error(e.getMessage());
+			log.error("分页标签执行出错",e);
 		}
 		return SKIP_BODY;
 	}
@@ -98,8 +97,7 @@ public class PageSplitTag extends TagSupport {
 				out.println("</select>");
 			}
 		} catch (IOException e){
-			e.printStackTrace();
-			log.error(e.getMessage());
+			log.error("分页标签执行出错",e);
 		}
 		
 		return EVAL_PAGE;
