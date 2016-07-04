@@ -7,6 +7,8 @@ import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
 import com.alibaba.fastjson.annotation.JSONType;
+import com.system.service.annotation.CriteriaField;
+import com.system.service.annotation.CriteriaType;
 /**
  * 静态消息类
  * @author 结发受长生
@@ -19,6 +21,8 @@ public class Msg implements Serializable {
 	@Id
 	private ObjectId id;
 	private String name;
+	
+	@CriteriaField(CriteriaType.EQ)
 	private String type;
 	private String str;
 	private int setTime;
