@@ -4,9 +4,11 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
+import org.bson.types.ObjectId;
 import org.springframework.stereotype.Component;
 /**
  * 对MongoDao当中进行的数据库操作进行日志记录的AOP切面
@@ -39,7 +41,10 @@ public class MongoDaoAop {
 		Object item = joinPoint.getArgs()[0];
 		log.error("{Entity:" + item.getClass().getSimpleName() + "} 写入错误", throwing);
 	}
-	
+	/**
+	 * MongoDao当中根据查询条件批量查询的dir方法, 正常返回后调用该方法
+	 * @param joinPoint 目标方法的调用情况封装对象
+	 */
 	@AfterReturning(value="execution(* com.system.service.dao.MongoDao.dir(..)) ")
 	public void dirReturn(JoinPoint joinPoint) {
 		Object[] arguments = joinPoint.getArgs();
@@ -54,5 +59,24 @@ public class MongoDaoAop {
 			}
 		}
 		log.info("{Entity:"+ clz.getSimpleName() +" , type:"+methodName+" , criteria:"+criteriaMap+"}");
+	}
+	/**
+	 * get方法调用结束之后执行该方法
+	 * @param joinPoint 目标方法的调用情况封装对象
+	 */
+	@After(value="execution(* com.system.service.dao.MongoDao.get(..))")
+	public void afterGet(JoinPoint joinPoint) {
+		Object[] arguments = joinPoint.getArgs();
+		String methodName = joinPoint.getSignature().getName();
+		Class<?> clz = Object.class;
+		ObjectId id = null;
+		for(Object argument : arguments) {
+			if(argument instanceof ObjectId) {
+				id = (ObjectId) argument;
+			} else if(argument instanceof Class) {
+				clz = (Class<?>) argument;
+			}
+		}
+		log.info("{Entity:"+ clz.getSimpleName() +" , type:"+methodName+" , id:"+id+" }");
 	}
 }
